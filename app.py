@@ -27,7 +27,7 @@ class WatermarkApp:
 
         # Process Button
         self.water_input_path = "C:\\Users\\Intern\\Pictures\\lexim.png"
-        self.water_output_path = "C:\\Users\\Intern\\Pictures"
+        self.water_output_path = "C:\\Users\\Intern\\Pictures\\leximwat.png"
         self.water_text = "Working"
         self.process_btn = tk.Button(root, text="Add Watermark", command=self.add_watermark(
             self.water_input_path,self.water_output_path,self.water_text))
@@ -62,10 +62,10 @@ class WatermarkApp:
         font = ImageFont.truetype("arial.ttf", font_size_pixels)
 
         # Calculate the position to center the watermark
-        watermark_text_size = draw.text(watermark_text, font)
-        watermark_width, watermark_height = watermark_text_size
-        x = (original_image.width - watermark_width) // 2
-        y = (original_image.height - watermark_height) // 2
+        watermark_text_size = draw.textlength(watermark_text, font)
+        # watermark_width, watermark_height = watermark_text_size
+        x = (original_image.width - watermark_text_size) // 2
+        y = (original_image.height - watermark_text_size) // 2
 
         # Add the watermark text to the image
         draw.text((x, y), watermark_text, font=font, fill=(255, 255, 255, 128))
